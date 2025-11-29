@@ -8,12 +8,14 @@ import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import HomeExtras from "@/components/HomeExtras";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
       <div id="hero"><Hero /></div>
+      <HomeExtras />
       <div id="about"><About /></div>
       <div id="programs"><Programs /></div>
       <div id="trainers"><Trainers /></div>
