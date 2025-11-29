@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Flame, Zap, Heart, Dumbbell, Target, Apple } from "lucide-react";
 
@@ -48,6 +48,7 @@ const programs = [
 ];
 
 const Programs = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-20 md:py-32 bg-background">
       <div className="container px-4">
@@ -101,7 +102,7 @@ const Programs = () => {
                 </ul>
 
                 {/* CTA */}
-                <Link to={`/program/${program.id}`} className="block">
+                <Link to={`/program/${program.id}`} onClick={() => window.scrollTo(0, 0)} className="block">
                   <Button 
                     variant="outline" 
                     className="w-full group-hover:bg-primary group-hover:text-primary-foreground"
