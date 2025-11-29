@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Mail, Star, Award, Users, Clock, Activity } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const initialFeatures = [
   { id: 0, icon: Star, title: "Elite Coaches", text: "Certified trainers with personalized plans." },
@@ -19,15 +20,27 @@ export default function HomeExtras() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const { toast } = useToast();
 
   const features = expanded ? [...initialFeatures, ...moreFeatures] : initialFeatures;
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return alert("Please enter an email");
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address.",
+        variant: "destructive"
+      });
+      return;
+    }
     setSubscribed(true);
     setEmail("");
-    alert("Thanks — you've been subscribed to our newsletter!");
+    toast({
+      title: "🎉 Subscribed!",
+      description: "Check your email for exclusive fitness tips.",
+      className: "border-2 border-primary bg-card"
+    });
   };
 
   const faqs = [

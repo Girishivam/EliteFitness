@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Check, Calendar, Users, Clock, Award, Mail, Phone, MapPin } from "lucide-react";
 import { Flame, Zap, Heart, Dumbbell, Target, Apple } from "lucide-react";
 
@@ -170,6 +171,7 @@ export default function ProgramDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const program = programsData.find(p => p.id === Number(id));
+  const { toast } = useToast();
   
   const [enrollDialogOpen, setEnrollDialogOpen] = useState(false);
   const [contactDialogOpen, setContactDialogOpen] = useState(false);
@@ -181,31 +183,55 @@ export default function ProgramDetail() {
 
   const handleEnroll = () => {
     if (enrollData.name && enrollData.email && enrollData.phone) {
-      alert(`🎉 Successfully enrolled in ${program?.title}!\nWe'll contact you at ${enrollData.email} shortly.`);
+      toast({
+        title: "✅ Enrollment Complete!",
+        description: `Successfully enrolled in ${program?.title}. We'll contact you at ${enrollData.email} shortly.`,
+        className: "border-2 border-primary bg-card"
+      });
       setEnrollData({ name: "", email: "", phone: "" });
       setEnrollDialogOpen(false);
     } else {
-      alert("Please fill in all fields");
+      toast({
+        title: "Missing Fields",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
     }
   };
 
   const handleContact = () => {
     if (contactData.name && contactData.email && contactData.message) {
-      alert(`Message sent! We'll get back to you at ${contactData.email} soon.`);
+      toast({
+        title: "✉️ Message Sent!",
+        description: `We'll get back to you at ${contactData.email} soon.`,
+        className: "border-2 border-primary bg-card"
+      });
       setContactData({ name: "", email: "", message: "" });
       setContactDialogOpen(false);
     } else {
-      alert("Please fill in all fields");
+      toast({
+        title: "Missing Fields",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
     }
   };
 
   const handleConsultation = () => {
     if (consultationData.name && consultationData.email && consultationData.phone && consultationData.preferredDate) {
-      alert(`Consultation scheduled!\nWe'll confirm your appointment at ${consultationData.email}`);
+      toast({
+        title: "📅 Consultation Scheduled!",
+        description: `We'll confirm your appointment at ${consultationData.email}`,
+        className: "border-2 border-primary bg-card"
+      });
       setConsultationData({ name: "", email: "", phone: "", preferredDate: "" });
       setConsultationDialogOpen(false);
     } else {
-      alert("Please fill in all fields");
+      toast({
+        title: "Missing Fields",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
     }
   };
 
