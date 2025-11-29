@@ -39,19 +39,12 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     toast({
-      title: "✨ Thank You!",
-      description: "Our team will contact you shortly.",
+      title: "✅ Message Received!",
+      description: "Thank you for reaching out. Our team will get back to you shortly.",
       className: "border-2 border-primary bg-card"
     });
 
-    const message = `Contact Form Inquiry
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Message: ${formData.message}`;
-    
-    window.open(`https://wa.me/6397895414?text=${encodeURIComponent(message)}`, '_blank');
-
+    // Reset form - stays on page, no redirect
     setFormData({ name: "", email: "", phone: "", message: "" });
     setIsSubmitting(false);
   };

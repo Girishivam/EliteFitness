@@ -97,24 +97,12 @@ const Membership = () => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Success message
+    // Success message - stays on page, no redirect
     toast({
-      title: "✨ Thank You!",
-      description: "Our team will contact you shortly via WhatsApp to complete your membership.",
+      title: "✅ Membership Application Submitted!",
+      description: `Your ${planName} plan inquiry has been received. Our team will contact you shortly.`,
       className: "border-2 border-primary bg-card"
     });
-
-    // Send WhatsApp message
-    const message = `New Membership Inquiry
-Plan: ${planName}
-Name: ${formData.name}
-Phone: ${formData.phone}
-Email: ${formData.email}
-City: ${formData.city}
-Preferred Start: ${formData.startDate}
-Comments: ${formData.comments}`;
-    
-    window.open(`https://wa.me/919999999999?text=${encodeURIComponent(message)}`, '_blank');
 
     // Reset form
     setFormData({

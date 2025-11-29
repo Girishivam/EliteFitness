@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Award, Calendar } from "lucide-react";
+import { Award, Calendar, MessageCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import trainer1 from "@/assets/trainer-4.jpg";
 // import trainer2 from "@/assets/trainer-2.jpg";
 import trainer6 from "@/assets/trainer 6.jpg";
@@ -24,7 +25,17 @@ const trainers = [
 ];
 
 const Trainers = () => {
+  const { toast } = useToast();
+
   const handleBookTrial = (trainerName: string) => {
+    toast({
+      title: "📅 Trial Booking Request",
+      description: `Your trial session request for ${trainerName} has been received. Our team will contact you to confirm.`,
+      className: "border-2 border-primary bg-card"
+    });
+  };
+
+  const handleWhatsApp = (trainerName: string) => {
     const message = `Hi, I would like to book a trial session with ${trainerName}`;
     window.open(`https://wa.me/919999999999?text=${encodeURIComponent(message)}`, '_blank');
   };
