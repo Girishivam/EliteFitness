@@ -37,7 +37,7 @@ export default function HomeExtras() {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-gradient-to-b from-background via-card to-background">
+    <section className="py-8 md:py-16 bg-gradient-to-b from-background via-card to-background">
       <div className="container px-4">
         <div className="text-center mb-8">
           <h3 className="text-2xl font-bold">Why Members Love Elite Fitness</h3>
@@ -46,7 +46,7 @@ export default function HomeExtras() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
           {features.map((f) => (
             <div key={f.id} className="bg-card border-2 border-primary/20 rounded-xl p-6 text-center">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto mb-4">
@@ -74,16 +74,17 @@ export default function HomeExtras() {
               <div>
                 <h4 className="font-semibold mb-1">Join our Newsletter</h4>
                 <p className="text-sm text-muted-foreground mb-4">Weekly tips, member stories and exclusive offers.</p>
-                <form onSubmit={handleSubscribe} className="flex gap-3">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
                   <input
-                    className="flex-1 px-4 py-2 rounded-lg border border-primary/10 bg-background"
+                    className="w-full sm:flex-1 px-4 py-2 rounded-lg border border-primary/10 bg-background"
                     placeholder="Your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     required
+                    aria-label="Your email"
                   />
-                  <Button type="submit">Subscribe</Button>
+                  <Button type="submit" className="whitespace-nowrap">Subscribe</Button>
                 </form>
                 {subscribed && <p className="text-sm text-primary mt-3">You're subscribed — check your inbox!</p>}
               </div>
@@ -98,13 +99,15 @@ export default function HomeExtras() {
                 <div key={f.id} className="border border-primary/10 rounded-lg overflow-hidden">
                   <button
                     onClick={() => setOpenFAQ(openFAQ === f.id ? null : f.id)}
+                    aria-expanded={openFAQ === f.id}
+                    aria-controls={`faq-${f.id}`}
                     className="w-full flex justify-between items-center p-4 text-left"
                   >
                     <span className="font-medium">{f.q}</span>
-                    <span className="text-primary">{openFAQ === f.id ? "—" : "+"}</span>
+                    <span className="text-primary" aria-hidden>{openFAQ === f.id ? "—" : "+"}</span>
                   </button>
                   {openFAQ === f.id && (
-                    <div className="p-4 pt-0 text-sm text-muted-foreground">
+                    <div id={`faq-${f.id}`} className="p-4 pt-0 text-sm text-muted-foreground">
                       {f.a}
                     </div>
                   )}
