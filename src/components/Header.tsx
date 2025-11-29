@@ -1,28 +1,22 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Dumbbell } from "lucide-react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const navLinks = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Programs", href: "#programs" },
-  { name: "Trainers", href: "#trainers" },
-  { name: "Membership", href: "#membership" },
-  { name: "Gallery", href: "#gallery" },
-  // { name: "Testimonials", href: "#testimonials" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Programs", path: "/programs" },
+  { name: "Trainers", path: "/trainers" },
+  { name: "Membership", path: "/membership" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "Contact", path: "/contact" },
 ];
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
-    }
-  };
+  const navigate = useNavigate();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/20">
@@ -42,14 +36,17 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <button
+              <NavLink
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors relative group"
+                to={link.path}
+                className={({ isActive }) =>
+                  `text-sm font-medium ${isActive ? "text-primary" : "text-foreground"} hover:text-primary transition-colors relative group`
+                }
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-              </button>
+              </NavLink>
             ))}
           </nav>
 
@@ -57,7 +54,7 @@ const Header = () => {
           <div className="hidden md:block">
             <Button 
               variant="hero" 
-              onClick={() => scrollToSection("#membership")}
+              onClick={() => navigate("/membership")}
               className="font-semibold"
             >
               Join Now
@@ -80,7 +77,10 @@ const Header = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    navigate(link.path);
+                  }}
                   className="text-left text-foreground hover:text-primary transition-colors font-medium py-2 border-b border-primary/10"
                 >
                   {link.name}
