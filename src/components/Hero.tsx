@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Dumbbell } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-gym.jpg";
 
 const Hero = () => {
-  const scrollToMembership = () => {
-    document.getElementById('membership')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const navigate = useNavigate();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -49,7 +48,7 @@ const Hero = () => {
             <Button 
               variant="hero" 
               size="xl" 
-              onClick={scrollToMembership}
+              onClick={() => navigate('/membership')}
               className="group"
             >
               Become a Member
@@ -58,7 +57,7 @@ const Hero = () => {
             <Button 
               variant="gold-outline" 
               size="xl"
-              onClick={scrollToMembership}
+              onClick={() => navigate('/trainers')}
             >
               Book a Trial
             </Button>

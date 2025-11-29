@@ -61,8 +61,8 @@ export default function HomeExtras() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
           {features.map((f) => (
-            <div key={f.id} className="bg-card border-2 border-primary/20 rounded-xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto mb-4">
+            <div key={f.id} className="group relative bg-card border-2 border-primary/20 rounded-xl p-6 text-center hover:border-primary transition-all duration-300 hover:shadow-[0_0_30px_hsl(43_74%_49%_/_0.3)] cursor-pointer">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <f.icon className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold mb-2">{f.title}</h4>
