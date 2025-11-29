@@ -48,7 +48,10 @@ const Hero = () => {
             <Button 
               variant="hero" 
               size="xl" 
-              onClick={() => navigate('/membership')}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate('/membership');
+              }}
               className="group"
             >
               Become a Member
@@ -57,7 +60,10 @@ const Hero = () => {
             <Button 
               variant="gold-outline" 
               size="xl"
-              onClick={() => navigate('/trainers')}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate('/trainers');
+              }}
             >
               Book a Trial
             </Button>

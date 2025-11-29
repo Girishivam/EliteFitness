@@ -240,7 +240,10 @@ export default function ProgramDetail() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background via-card to-background">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Program Not Found</h1>
-          <Button onClick={() => navigate("/")} className="mt-4">
+          <Button onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/");
+          }} className="mt-4">
             Back to Home
           </Button>
         </div>
@@ -255,7 +258,10 @@ export default function ProgramDetail() {
       <div className="container px-4">
         {/* Back Button */}
         <button
-          onClick={() => navigate("/")}
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/");
+          }}
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />

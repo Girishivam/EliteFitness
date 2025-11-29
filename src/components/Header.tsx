@@ -23,7 +23,10 @@ const Header = () => {
       <div className="container px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection("#hero")}>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => {
+            window.scrollTo(0, 0);
+            navigate('/');
+          }}>
             <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center gold-shimmer">
               <Dumbbell className="w-6 h-6 text-primary" />
             </div>
@@ -42,7 +45,10 @@ const Header = () => {
                 className={({ isActive }) =>
                   `text-sm font-medium ${isActive ? "text-primary" : "text-foreground"} hover:text-primary transition-colors relative group`
                 }
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setMobileMenuOpen(false);
+                }}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
@@ -54,7 +60,10 @@ const Header = () => {
           <div className="hidden md:block">
             <Button 
               variant="hero" 
-              onClick={() => navigate("/membership")}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/membership");
+              }}
               className="font-semibold"
             >
               Join Now
@@ -78,6 +87,7 @@ const Header = () => {
                 <button
                   key={link.name}
                   onClick={() => {
+                    window.scrollTo(0, 0);
                     setMobileMenuOpen(false);
                     navigate(link.path);
                   }}
@@ -88,7 +98,11 @@ const Header = () => {
               ))}
               <Button 
                 variant="hero" 
-                onClick={() => scrollToSection("#membership")}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setMobileMenuOpen(false);
+                  navigate("/membership");
+                }}
                 className="w-full mt-4"
               >
                 Join Now
